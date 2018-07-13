@@ -2,6 +2,19 @@ import UIKit
 
 class StoriesTableViewController: UITableViewController {
 
+    let newsService : NewsService
+
+    init(newsService : NewsService) {
+        self.newsService = newsService
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("Not supported")
+    }
+
+    var onHeadlineSelected : ((Headline) -> Void)?
+
     var headlines = [Headline]() {
         didSet {
             self.navigationItem.title = "\(headlines.count) Stories"
@@ -12,7 +25,9 @@ class StoriesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NewsService.default.getHeadlines { headlines in
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "LabelCell")
+
+        self.newsService.getHeadlines { headlines in
             self.headlines = headlines
         }
     }
@@ -32,17 +47,10 @@ class StoriesTableViewController: UITableViewController {
         return cell
     }
 
-    // MARK: - segues
+    // MARK: - protocol UITableViewDelegate
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        if let controller = segue.destination as? StoryViewController {
-            let cell = sender as! UITableViewCell
-            let indexPath = self.tableView.indexPath(for: cell)!
-            let data = headlines[indexPath.row]
-            controller.articleId = data.id
-        }
-
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.onHeadlineSelected?(self.headlines[indexPath.row])
     }
 
 }

@@ -13,9 +13,12 @@ struct Article {
 
 }
 
-class NewsService {
+protocol NewsService {
+    func getHeadlines(resultHandler : ([Headline]) -> Void)
+    func getArticle(id : Int, resultHandler : (Article) -> Void)
+}
 
-    static var `default` = NewsService()
+class ExampleNewsService : NewsService {
 
     var exampleArticles = [
         Article(id: 1, title: "Lorem Ipsum", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id ornare tortor, quis dictum enim. Morbi convallis tincidunt quam eget bibendum. Suspendisse malesuada maximus ante, at molestie massa fringilla id."),

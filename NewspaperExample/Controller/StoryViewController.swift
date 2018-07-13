@@ -2,9 +2,20 @@ import UIKit
 
 class StoryViewController : UIViewController {
 
-    @IBOutlet var textView: UITextView!
+    let articleId : Int
+    let newsService : NewsService
 
-    var articleId : Int?
+    init(articleId : Int, newsService : NewsService) {
+        self.articleId = articleId
+        self.newsService = newsService
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("Not supported")
+    }
+
+    @IBOutlet var textView: UITextView!
 
     var article : Article? {
         didSet {
@@ -15,7 +26,7 @@ class StoryViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NewsService.default.getArticle(id: self.articleId!) { article in
+        self.newsService.getArticle(id: self.articleId) { article in
             self.article = article
         }
     }
