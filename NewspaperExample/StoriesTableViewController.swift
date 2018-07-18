@@ -26,7 +26,10 @@ class StoriesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath)
 
-        cell.textLabel?.text = headlines[indexPath.row].title
+        let headline = headlines[indexPath.row]
+        cell.textLabel?.text = headline.title
+        cell.detailTextLabel?.text = headline.text
+        cell.imageView?.image = UIImage(named: headline.image)
 
         return cell
     }
