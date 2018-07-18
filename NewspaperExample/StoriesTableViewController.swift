@@ -17,6 +17,12 @@ class StoriesTableViewController: UITableViewController {
         Headline(id: 3, title: "In ac ante sapien", text: "Aliquam egestas ultricies dapibus. Nam molestie nunc in ipsum vehicula accumsan quis sit amet quam. Sed vel feugiat eros.", image: "Cantaloupe"),
         ]
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.tableView.isEditing = true
+    }
+
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -34,4 +40,19 @@ class StoriesTableViewController: UITableViewController {
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let movedObject = self.headlines[sourceIndexPath.row]
+        headlines.remove(at: sourceIndexPath.row)
+        headlines.insert(movedObject, at: destinationIndexPath.row)
+        debugPrint("\(sourceIndexPath.row) => \(destinationIndexPath.row)")
+        // To check for correctness enable: self.tableView.reloadData()
+    }
 }
