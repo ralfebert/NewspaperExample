@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "GroupedSection",
+        "repositoryURL": "https://github.com/ralfebert/GroupedSection.git",
+        "state": {
+          "branch": "master",
+          "revision": "f2695b64db0d830bfd675ed9da733cfe3f33ede7",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

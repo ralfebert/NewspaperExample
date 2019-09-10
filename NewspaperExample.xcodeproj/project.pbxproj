@@ -3,16 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF62279522F5D27600371ABF /* GroupedSection in Frameworks */ = {isa = PBXBuildFile; productRef = BF62279422F5D27600371ABF /* GroupedSection */; };
 		BF93564020FFB00B00F76756 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF93563F20FFB00B00F76756 /* AppDelegate.swift */; };
 		BF93564520FFB00B00F76756 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF93564320FFB00B00F76756 /* Main.storyboard */; };
 		BF93564720FFB00C00F76756 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF93564620FFB00C00F76756 /* Assets.xcassets */; };
 		BF93564A20FFB00C00F76756 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF93564820FFB00C00F76756 /* LaunchScreen.storyboard */; };
-		BF93565220FFB5E900F76756 /* StoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF93565120FFB5E900F76756 /* StoriesTableViewController.swift */; };
-		BFB8DF19233380F600410EE6 /* GroupedSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8DF18233380F600410EE6 /* GroupedSection.swift */; };
+		BFB8DF4123338FB500410EE6 /* StoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8DF4023338FB500410EE6 /* StoriesTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,8 +22,7 @@
 		BF93564620FFB00C00F76756 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF93564920FFB00C00F76756 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF93564B20FFB00C00F76756 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BF93565120FFB5E900F76756 /* StoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesTableViewController.swift; sourceTree = "<group>"; };
-		BFB8DF18233380F600410EE6 /* GroupedSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedSection.swift; sourceTree = "<group>"; };
+		BFB8DF4023338FB500410EE6 /* StoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF62279522F5D27600371ABF /* GroupedSection in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,31 +56,22 @@
 		BF93563E20FFB00B00F76756 /* NewspaperExample */ = {
 			isa = PBXGroup;
 			children = (
-				BFB8DF1523337EB100410EE6 /* Common */,
+				BFB8DF3F23338FA200410EE6 /* Controller */,
 				BF93563F20FFB00B00F76756 /* AppDelegate.swift */,
 				BF93564320FFB00B00F76756 /* Main.storyboard */,
 				BF93564620FFB00C00F76756 /* Assets.xcassets */,
 				BF93564820FFB00C00F76756 /* LaunchScreen.storyboard */,
 				BF93564B20FFB00C00F76756 /* Info.plist */,
-				BFB8DF1423337EA300410EE6 /* Controller */,
 			);
 			path = NewspaperExample;
 			sourceTree = "<group>";
 		};
-		BFB8DF1423337EA300410EE6 /* Controller */ = {
+		BFB8DF3F23338FA200410EE6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				BF93565120FFB5E900F76756 /* StoriesTableViewController.swift */,
+				BFB8DF4023338FB500410EE6 /* StoriesTableViewController.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		BFB8DF1523337EB100410EE6 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				BFB8DF18233380F600410EE6 /* GroupedSection.swift */,
-			);
-			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -99,6 +90,9 @@
 			dependencies = (
 			);
 			name = NewspaperExample;
+			packageProductDependencies = (
+				BF62279422F5D27600371ABF /* GroupedSection */,
+			);
 			productName = NewspaperExample;
 			productReference = BF93563C20FFB00B00F76756 /* NewspaperExample.app */;
 			productType = "com.apple.product-type.application";
@@ -127,6 +121,9 @@
 				Base,
 			);
 			mainGroup = BF93563320FFB00B00F76756;
+			packageReferences = (
+				BF62279322F5D27600371ABF /* XCRemoteSwiftPackageReference "GroupedSection" */,
+			);
 			productRefGroup = BF93563D20FFB00B00F76756 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -154,8 +151,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF93565220FFB5E900F76756 /* StoriesTableViewController.swift in Sources */,
-				BFB8DF19233380F600410EE6 /* GroupedSection.swift in Sources */,
+				BFB8DF4123338FB500410EE6 /* StoriesTableViewController.swift in Sources */,
 				BF93564020FFB00B00F76756 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,6 +350,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BF62279322F5D27600371ABF /* XCRemoteSwiftPackageReference "GroupedSection" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ralfebert/GroupedSection.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BF62279422F5D27600371ABF /* GroupedSection */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF62279322F5D27600371ABF /* XCRemoteSwiftPackageReference "GroupedSection" */;
+			productName = GroupedSection;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BF93563420FFB00B00F76756 /* Project object */;
 }

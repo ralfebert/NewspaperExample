@@ -1,3 +1,4 @@
+import GroupedSection
 import UIKit
 
 struct Headline {
@@ -63,8 +64,7 @@ class StoriesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath)
 
-        let section = self.sections[indexPath.section]
-        let headline = section.rows[indexPath.row]
+        let headline = self.sections[indexPath]
         cell.textLabel?.text = headline.title
         cell.detailTextLabel?.text = headline.text
         cell.imageView?.image = UIImage(named: headline.image)
