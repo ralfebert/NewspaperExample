@@ -14,20 +14,6 @@ private func firstDayOfMonth(date: Date) -> Date {
     return calendar.date(from: components)!
 }
 
-struct MonthSection {
-
-    var month : Date
-    var headlines : [Headline]
-
-    static func group(headlines : [Headline]) -> [MonthSection] {
-        let groups = Dictionary(grouping: headlines) { headline in
-            firstDayOfMonth(date: headline.date)
-        }
-        return groups.map(MonthSection.init(month:headlines:))
-    }
-
-}
-
 private func parseDate(_ str : String) -> Date {
     let dateFormat = DateFormatter()
     dateFormat.dateFormat = "yyyy-MM-dd"
@@ -43,15 +29,15 @@ class StoriesTableViewController: UITableViewController {
         Headline(id: 4, date: parseDate("2018-02-10"), title: "Aenean condimentum", text: "Ut eget massa erat. Morbi mauris diam, vulputate at luctus non, finibus et diam. Morbi et felis a lacus pharetra blandit.", image: "Banana"),
     ]
 
-    var sections = [MonthSection]()
+    var sections = [GroupedSection<Date, Headline>]()
 
     // MARK: - View Controller lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.sections = MonthSection.group(headlines: self.headlines)
-        self.sections.sort { lhs, rhs in lhs.month < rhs.month }
+        self.sections = GroupedSection.group(rows: self.headlines, by: { firstDayOfMonth(date: $0.date) })
+        self.sections.sort { lhs, rhs in lhs.sectionItem < rhs.sectionItem }
 
     }
 
@@ -63,7 +49,7 @@ class StoriesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let section = self.sections[section]
-        let date = section.month
+        let date = section.sectionItem
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM yyyy"
         return dateFormatter.string(from: date)
@@ -71,14 +57,14 @@ class StoriesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let section = self.sections[section]
-        return section.headlines.count
+        return section.rows.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath)
 
         let section = self.sections[indexPath.section]
-        let headline = section.headlines[indexPath.row]
+        let headline = section.rows[indexPath.row]
         cell.textLabel?.text = headline.title
         cell.detailTextLabel?.text = headline.text
         cell.imageView?.image = UIImage(named: headline.image)
